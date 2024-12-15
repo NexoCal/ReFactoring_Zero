@@ -1,0 +1,3 @@
+res://scene/CRoom01.tscn
+res://scene/player.tscn
+res://scripts/attackState.gd
