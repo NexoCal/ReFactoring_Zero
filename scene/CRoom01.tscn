@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://7a5e2ilrs0re"]
+
+[ext_resource type="Texture2D" uid="uid://ckys0v5o8bfj5" path="res://assets/background/S01-T1.png" id="1_hot4f"]
+[ext_resource type="PackedScene" uid="uid://se8t5bp4t4j2" path="res://scene/player.tscn" id="2_gualc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aj34w"]
+size = Vector2(1280.5, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgxq5"]
+size = Vector2(64, 638)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqc0h"]
+size = Vector2(63, 637)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmx2d"]
+size = Vector2(1152, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flog7"]
+size = Vector2(303, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqwei"]
+size = Vector2(304, 20)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("1_hot4f")
+
+[node name="wallBarrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallBarrier"]
+position = Vector2(639.75, 679)
+shape = SubResource("RectangleShape2D_aj34w")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="wallBarrier"]
+position = Vector2(32, 319)
+shape = SubResource("RectangleShape2D_cgxq5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="wallBarrier"]
+position = Vector2(1247.5, 318.5)
+shape = SubResource("RectangleShape2D_bqc0h")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="wallBarrier"]
+position = Vector2(640, 32)
+shape = SubResource("RectangleShape2D_cmx2d")
+
+[node name="platform" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
+position = Vector2(358.5, 460)
+shape = SubResource("RectangleShape2D_flog7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="platform"]
+position = Vector2(912, 300)
+shape = SubResource("RectangleShape2D_lqwei")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_gualc")]
+position = Vector2(474, 423)
