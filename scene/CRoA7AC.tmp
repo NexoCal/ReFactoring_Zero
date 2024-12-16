@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://7a5e2ilrs0re"]
+[gd_scene load_steps=9 format=3 uid="uid://7a5e2ilrs0re"]
 
 [ext_resource type="Texture2D" uid="uid://ckys0v5o8bfj5" path="res://assets/background/S01-T1.png" id="1_hot4f"]
 [ext_resource type="PackedScene" uid="uid://se8t5bp4t4j2" path="res://scene/player.tscn" id="2_gualc"]
-[ext_resource type="PackedScene" uid="uid://2giv35i3hh6p" path="res://scene/uav_drone.tscn" id="3_bor0w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aj34w"]
 size = Vector2(1280.5, 84)
@@ -29,8 +28,6 @@ position = Vector2(640, 360)
 texture = ExtResource("1_hot4f")
 
 [node name="wallBarrier" type="StaticBody2D" parent="."]
-collision_layer = 16777216
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wallBarrier"]
 position = Vector2(639.75, 679)
@@ -49,8 +46,6 @@ position = Vector2(640, 32)
 shape = SubResource("RectangleShape2D_cmx2d")
 
 [node name="platform" type="StaticBody2D" parent="."]
-collision_layer = 16777216
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
 position = Vector2(358.5, 460)
@@ -60,8 +55,5 @@ shape = SubResource("RectangleShape2D_flog7")
 position = Vector2(912, 300)
 shape = SubResource("RectangleShape2D_lqwei")
 
-[node name="player" parent="." instance=ExtResource("2_gualc")]
-position = Vector2(163, 533)
-
-[node name="UAVDrone" parent="." instance=ExtResource("3_bor0w")]
-position = Vector2(677, 438)
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_gualc")]
+position = Vector2(166, 696)
