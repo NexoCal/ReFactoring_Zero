@@ -1,11 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://2giv35i3hh6p"]
+[gd_scene load_steps=15 format=3 uid="uid://2giv35i3hh6p"]
 
 [ext_resource type="Texture2D" uid="uid://crxu4irm0kx5m" path="res://assets/uav/uavdrone_idle.png" id="1_a4rk5"]
 [ext_resource type="Script" path="res://scripts/UAV/uav_drone.gd" id="1_t6oyy"]
+[ext_resource type="Shader" path="res://damageHit.gdshader" id="2_ogygn"]
 [ext_resource type="Script" path="res://scripts/FSM.gd" id="3_4cvrh"]
 [ext_resource type="Texture2D" uid="uid://864sle0l5tik" path="res://assets/uav/uavdrone_attack.png" id="3_digbi"]
 [ext_resource type="Script" path="res://scripts/UAV/idle.gd" id="4_ijxif"]
 [ext_resource type="Script" path="res://scripts/UAV/attack.gd" id="6_s5tqy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5t5v6"]
+shader = ExtResource("2_ogygn")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = null
 
 [sub_resource type="Animation" id="Animation_qt4at"]
 length = 0.001
@@ -56,6 +62,71 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Marker2D/Sprite2D:material:shader_parameter/flash_value")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_uviah"]
+resource_name = "attack"
+length = 1.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_digbi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2D/Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marker2D/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 
 [sub_resource type="Animation" id="Animation_3ob2h"]
@@ -112,72 +183,37 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_uviah"]
-resource_name = "attack"
-length = 1.7
-step = 0.1
+[sub_resource type="Animation" id="Animation_sfxsn"]
+resource_name = "hitFlash"
+length = 0.04
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Marker2D/Sprite2D:texture")
+tracks/0/path = NodePath("Marker2D/Sprite2D:material:shader_parameter/flash_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_digbi")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D/Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker2D/Sprite2D:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Marker2D/Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+"times": PackedFloat32Array(0, 0.02, 0.04),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [null, 1.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bv04v"]
 _data = {
 "RESET": SubResource("Animation_qt4at"),
 "attack": SubResource("Animation_uviah"),
+"hitFlash": SubResource("Animation_sfxsn"),
 "idle": SubResource("Animation_3ob2h")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sx4uf"]
-size = Vector2(37, 49.6667)
+size = Vector2(37, 67.0001)
 
-[node name="UAVDrone" type="CharacterBody2D"]
+[node name="UAVDrone" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
-scale = Vector2(1.5, 1.5)
+texture_filter = 1
 collision_layer = 0
 collision_mask = 16777216
 script = ExtResource("1_t6oyy")
@@ -186,7 +222,8 @@ script = ExtResource("1_t6oyy")
 
 [node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
 texture_filter = 1
-position = Vector2(-64, 1)
+material = SubResource("ShaderMaterial_5t5v6")
+position = Vector2(-191, 3)
 texture = ExtResource("1_a4rk5")
 hframes = 6
 
@@ -195,8 +232,17 @@ libraries = {
 "": SubResource("AnimationLibrary_bv04v")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 17.8333)
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="hitScan" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 26.5)
+shape = SubResource("RectangleShape2D_sx4uf")
+
+[node name="mainCol" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 26.5)
 shape = SubResource("RectangleShape2D_sx4uf")
 
 [node name="FSM" type="Node" parent="." node_paths=PackedStringArray("init_state")]
@@ -211,4 +257,5 @@ script = ExtResource("6_s5tqy")
 
 [node name="attackCooldown" type="Timer" parent="FSM/attack"]
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="FSM/attack/attackCooldown" to="FSM/attack" method="_on_attack_cooldown_timeout"]

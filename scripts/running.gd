@@ -13,12 +13,15 @@ func update(_delta:float):
 	if Input.is_action_pressed("moveRight"):
 		marker2d.scale.x = 1
 		player.velocity.x += player.FLOORACC
+		player.direction = Vector2.RIGHT
 		
 	elif Input.is_action_pressed("moveLeft"):
 		marker2d.scale.x = -1
 		player.velocity.x += -player.FLOORACC
+		player.direction = Vector2.LEFT
 		
-	
+	if Input.is_action_just_pressed("dash") and player.canDash:
+		stateTrans.emit(self,"dash")
 		
 		
 		

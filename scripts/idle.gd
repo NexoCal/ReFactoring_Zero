@@ -11,7 +11,7 @@ func enter():
 
 func update(_delta:float):
 	if player.velocity.x !=0:
-		player.velocity.x = lerp(player.velocity.x,0.0,0.2)
+		player.velocity.x = lerp(player.velocity.x,0.0,0.3)
 	
 	if Input.is_action_just_pressed("attack") and player.is_on_floor():
 		stateTrans.emit(self, "attackState")
@@ -21,5 +21,9 @@ func update(_delta:float):
 		
 	if !attack_state.canMove == false and Input.is_action_just_pressed("ui_accept") and player.is_on_floor():
 		stateTrans.emit(self,"jump")
+		
+	if Input.is_action_just_pressed("dash") and player.canDash:
+		stateTrans.emit(self,"dash")
+		print("DASH")
 func exit():
 	pass

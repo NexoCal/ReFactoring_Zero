@@ -19,6 +19,9 @@ func update(_delta:float):
 		
 	else:
 		player.velocity.x = 0
+	
+	if Input.is_action_just_pressed("dash") and player.canDash:
+		stateTrans.emit(self,"dash")
 		
 		
 	if player.is_on_floor() and player.velocity.x == 0:
