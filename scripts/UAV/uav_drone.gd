@@ -6,14 +6,15 @@ const SPEED = 400.0
 const  GRAVITY = 980.0
 var MAXDIST = 400.0
 var health = 100
+var attackVal = 10
+var died = false
 
 var playerX
 var targetX
 var follow 
 
 func _process(delta: float) -> void:
-	if health <= 0:
-		queue_free()
+	pass
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -23,11 +24,7 @@ func _physics_process(delta: float) -> void:
 	playerX = player.position.x
 	targetX = playerX - position.x
 	
-
 	move_and_slide()
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("playerAttacks"):
-		health -= player.attackVal
-		$AnimationPlayer.play('hitFlash')
+
 	

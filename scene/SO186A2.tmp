@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://bs5d7da6aqqmd"]
+
+[ext_resource type="Script" path="res://scripts/areaScripts/so_1t_2.gd" id="1_t66yn"]
+[ext_resource type="Texture2D" uid="uid://dt7nq77g5xgd3" path="res://assets/background/S01-T2.png" id="2_0nfrd"]
+[ext_resource type="PackedScene" uid="uid://chyshasankgsd" path="res://scene/spawn.tscn" id="3_2yc63"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq2cn"]
+size = Vector2(64, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceaq7"]
+size = Vector2(1152, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4labo"]
+size = Vector2(1152, 83)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4sqe"]
+size = Vector2(288, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xowxi"]
+size = Vector2(318, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0s53l"]
+size = Vector2(322, 24)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_t66yn")
+
+[node name="background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_0nfrd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16777216
+collision_mask = 0
+
+[node name="wallLeft" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-608, 0)
+shape = SubResource("RectangleShape2D_bq2cn")
+
+[node name="wallRight" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(608, 0)
+shape = SubResource("RectangleShape2D_bq2cn")
+
+[node name="walltop" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -328)
+shape = SubResource("RectangleShape2D_ceaq7")
+
+[node name="wallBottom" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 318.5)
+shape = SubResource("RectangleShape2D_4labo")
+
+[node name="Platform1" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(4, 56)
+shape = SubResource("RectangleShape2D_p4sqe")
+one_way_collision = true
+
+[node name="Platform2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(417, 138)
+shape = SubResource("RectangleShape2D_xowxi")
+one_way_collision = true
+
+[node name="Platform3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-415, 138)
+shape = SubResource("RectangleShape2D_0s53l")
+one_way_collision = true
+
+[node name="playerSpawn" type="Marker2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="enemySpawn1" type="Marker2D" parent="."]
+position = Vector2(-500, 231)
+
+[node name="enemySpawn2" type="Marker2D" parent="."]
+position = Vector2(479, 232)
+
+[node name="SpawnAnim1" parent="." instance=ExtResource("3_2yc63")]
+
+[node name="SpawnAnim2" parent="." instance=ExtResource("3_2yc63")]
+
+[node name="enemySpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="enemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

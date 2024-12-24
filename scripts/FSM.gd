@@ -1,6 +1,10 @@
 extends Node
 class_name FSM
 
+@onready var uavdrone: CharacterBody2D = $".."
+@onready var player = get_parent().get_parent().get_node("player")
+@onready var animplay: AnimationPlayer = $"../AnimationPlayer"
+
 var states: Dictionary = {}
 var currentState
 @export var init_state : State
@@ -38,3 +42,7 @@ func change_state(srcState, newState):
 	
 	currentState = targetState
 	print("changed")
+
+
+
+			

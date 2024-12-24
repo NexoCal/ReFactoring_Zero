@@ -1,8 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://7a5e2ilrs0re"]
+[gd_scene load_steps=13 format=3 uid="uid://7a5e2ilrs0re"]
 
+[ext_resource type="Script" path="res://scripts/areaScripts/c_room_01.gd" id="1_5o1ry"]
 [ext_resource type="Texture2D" uid="uid://ckys0v5o8bfj5" path="res://assets/background/S01-T1.png" id="1_hot4f"]
 [ext_resource type="PackedScene" uid="uid://se8t5bp4t4j2" path="res://scene/player.tscn" id="2_gualc"]
-[ext_resource type="PackedScene" uid="uid://2giv35i3hh6p" path="res://scene/uav_drone.tscn" id="3_bor0w"]
+[ext_resource type="Shader" path="res://shader/hitShader.gdshader" id="2_t64fs"]
+[ext_resource type="PackedScene" uid="uid://chyshasankgsd" path="res://scene/spawn.tscn" id="5_vhgyn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxw5j"]
+shader = ExtResource("2_t64fs")
+shader_parameter/strength = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aj34w"]
 size = Vector2(1280.5, 84)
@@ -22,13 +28,32 @@ size = Vector2(303, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqwei"]
 size = Vector2(304, 20)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
+script = ExtResource("1_5o1ry")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="hitEffect" type="SubViewportContainer" parent="."]
+visible = false
+z_index = 10
+material = SubResource("ShaderMaterial_kxw5j")
+layout_direction = 1
+offset_left = -639.0
+offset_top = -360.0
+offset_right = 641.0
+offset_bottom = 360.0
+
+[node name="SubViewport" type="SubViewport" parent="hitEffect"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 0
 
 [node name="background" type="Sprite2D" parent="."]
-position = Vector2(640, 360)
+texture_filter = 1
 texture = ExtResource("1_hot4f")
 
 [node name="wallBarrier" type="StaticBody2D" parent="."]
+position = Vector2(-640, -360)
 collision_layer = 16777216
 collision_mask = 0
 
@@ -49,6 +74,7 @@ position = Vector2(640, 32)
 shape = SubResource("RectangleShape2D_cmx2d")
 
 [node name="platform" type="StaticBody2D" parent="."]
+position = Vector2(-640, -360)
 collision_layer = 16777216
 collision_mask = 0
 
@@ -61,7 +87,19 @@ position = Vector2(912, 300)
 shape = SubResource("RectangleShape2D_lqwei")
 
 [node name="player" parent="." instance=ExtResource("2_gualc")]
-position = Vector2(163, 533)
+position = Vector2(-523, 217)
 
-[node name="UAVDrone" parent="." instance=ExtResource("3_bor0w")]
-position = Vector2(677, 438)
+[node name="enemyspawn1" type="Marker2D" parent="."]
+position = Vector2(-163, 42)
+
+[node name="enemyspawn2" type="Marker2D" parent="."]
+position = Vector2(410, 231)
+
+[node name="spawn1" parent="." instance=ExtResource("5_vhgyn")]
+
+[node name="spawn2" parent="." instance=ExtResource("5_vhgyn")]
+
+[node name="enemySpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="enemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

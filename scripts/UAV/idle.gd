@@ -17,9 +17,11 @@ func update(_delta: float):
 	
 	if uavdrone.follow == true and uavdrone.targetX >0.0:
 		uavdrone.velocity.x = uavdrone.SPEED
+		marker2d.scale.x = -1
 		uavdrone.MAXDIST = 400
 	elif uavdrone.follow == true and uavdrone.targetX <0.0:
 		uavdrone.velocity.x = -uavdrone.SPEED
+		marker2d.scale.x = 1
 		uavdrone.MAXDIST = 400
 		
 	

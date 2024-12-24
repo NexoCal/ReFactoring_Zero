@@ -1,17 +1,26 @@
-[gd_scene load_steps=15 format=3 uid="uid://2giv35i3hh6p"]
+[gd_scene load_steps=20 format=3 uid="uid://2giv35i3hh6p"]
 
 [ext_resource type="Texture2D" uid="uid://crxu4irm0kx5m" path="res://assets/uav/uavdrone_idle.png" id="1_a4rk5"]
 [ext_resource type="Script" path="res://scripts/UAV/uav_drone.gd" id="1_t6oyy"]
-[ext_resource type="Shader" path="res://damageHit.gdshader" id="2_ogygn"]
-[ext_resource type="Script" path="res://scripts/FSM.gd" id="3_4cvrh"]
+[ext_resource type="Shader" path="res://shader/damageHit.gdshader" id="2_ogygn"]
 [ext_resource type="Texture2D" uid="uid://864sle0l5tik" path="res://assets/uav/uavdrone_attack.png" id="3_digbi"]
 [ext_resource type="Script" path="res://scripts/UAV/idle.gd" id="4_ijxif"]
+[ext_resource type="Texture2D" uid="uid://bqaisnbgw0i3c" path="res://assets/uav/dronedie.png" id="5_xu51j"]
 [ext_resource type="Script" path="res://scripts/UAV/attack.gd" id="6_s5tqy"]
+[ext_resource type="Script" path="res://scripts/FSMDrone.gd" id="6_vmq1p"]
+[ext_resource type="Script" path="res://scripts/UAV/die.gd" id="8_kepgg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5t5v6"]
+resource_local_to_scene = true
 shader = ExtResource("2_ogygn")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = null
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx4uf"]
+size = Vector2(37, 67.0001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnvxy"]
+size = Vector2(453, 11)
 
 [sub_resource type="Animation" id="Animation_qt4at"]
 length = 0.001
@@ -75,6 +84,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [null]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Marker2D/hurtBox/attBox:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_uviah"]
 resource_name = "attack"
@@ -127,6 +148,100 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Marker2D/hurtBox/attBox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_yq715"]
+resource_name = "die"
+length = 1.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_xu51j")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2D/Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marker2D/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Marker2D/Sprite2D:material:shader_parameter/flash_value")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.9, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_sfxsn"]
+resource_name = "hitFlash"
+length = 0.06
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/Sprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [null, 1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_3ob2h"]
@@ -183,33 +298,18 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_sfxsn"]
-resource_name = "hitFlash"
-length = 0.04
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Marker2D/Sprite2D:material:shader_parameter/flash_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.04),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [null, 1.0, 0.0]
-}
+[sub_resource type="Animation" id="Animation_yitj6"]
+resource_name = "spawn"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bv04v"]
 _data = {
 "RESET": SubResource("Animation_qt4at"),
 "attack": SubResource("Animation_uviah"),
+"die": SubResource("Animation_yq715"),
 "hitFlash": SubResource("Animation_sfxsn"),
-"idle": SubResource("Animation_3ob2h")
+"idle": SubResource("Animation_3ob2h"),
+"spawn": SubResource("Animation_yitj6")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx4uf"]
-size = Vector2(37, 67.0001)
 
 [node name="UAVDrone" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
@@ -227,26 +327,35 @@ position = Vector2(-191, 3)
 texture = ExtResource("1_a4rk5")
 hframes = 6
 
+[node name="Area2D" type="Area2D" parent="Marker2D" groups=["enemyAttacks"]]
+collision_layer = 0
+collision_mask = 256
+
+[node name="hitScan" type="CollisionShape2D" parent="Marker2D/Area2D"]
+position = Vector2(0, 26.5)
+shape = SubResource("RectangleShape2D_sx4uf")
+
+[node name="hurtBox" type="Area2D" parent="Marker2D" groups=["enemyAttacks"]]
+collision_layer = 1536
+collision_mask = 512
+
+[node name="attBox" type="CollisionShape2D" parent="Marker2D/hurtBox"]
+position = Vector2(-225.5, 5.5)
+shape = SubResource("RectangleShape2D_pnvxy")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_bv04v")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 256
-
-[node name="hitScan" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 26.5)
-shape = SubResource("RectangleShape2D_sx4uf")
-
 [node name="mainCol" type="CollisionShape2D" parent="."]
-visible = false
+light_mask = 0
+visibility_layer = 0
 position = Vector2(0, 26.5)
 shape = SubResource("RectangleShape2D_sx4uf")
 
 [node name="FSM" type="Node" parent="." node_paths=PackedStringArray("init_state")]
-script = ExtResource("3_4cvrh")
+script = ExtResource("6_vmq1p")
 init_state = NodePath("chase")
 
 [node name="chase" type="Node" parent="FSM"]
@@ -257,5 +366,16 @@ script = ExtResource("6_s5tqy")
 
 [node name="attackCooldown" type="Timer" parent="FSM/attack"]
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="lockMove" type="Timer" parent="FSM/attack"]
+one_shot = true
+
+[node name="die" type="Node" parent="FSM"]
+script = ExtResource("8_kepgg")
+
+[node name="despawning" type="Timer" parent="FSM/die"]
+one_shot = true
+
+[connection signal="area_entered" from="Marker2D/Area2D" to="FSM" method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="FSM/attack/attackCooldown" to="FSM/attack" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="FSM/attack/lockMove" to="FSM/attack" method="_on_lock_move_timeout"]
+[connection signal="timeout" from="FSM/die/despawning" to="FSM/die" method="_on_despawning_timeout"]
