@@ -5,6 +5,8 @@ class_name FSMDrone
 @onready var player = get_parent().get_parent().get_node("player")
 @onready var animplay: AnimationPlayer = $"../AnimationPlayer"
 
+signal resetAttack
+
 var states: Dictionary = {}
 var currentState
 @export var init_state : State
@@ -48,12 +50,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerAttacks") and !uavdrone.died:
 		uavdrone.health -= player.attackVal
 		animplay.play('hitFlash')
-		freezeTime(0.5,0.1)
-		if uavdrone.health == 0:
+		freezeTime(0.1,0.3)
+		print(uavdrone.health)
+		if uavdrone.health <= 0:
 			change_state(currentState,"die")
+		else:
+			resetAttack.emit()
 
 			
 func freezeTime(timeScale, duration):
 	Engine.time_scale = timeScale
-	await player.get_parent().get_parent().get_tree().create_timer(duration * timeScale).timeout
+	await player.get_parent().get_tree().create_timer(duration * timeScale).timeout
 	Engine.time_scale = 1.0

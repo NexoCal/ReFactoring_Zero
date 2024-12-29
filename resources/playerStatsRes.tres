@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=3 format=3 uid="uid://lrkrlxt1y8ml"]
+
+[ext_resource type="Script" path="res://resources/playerstat.gd" id="1_oin7r"]
+[ext_resource type="Resource" uid="uid://bkh38uvt7vfn2" path="res://resources/playerInv.tres" id="2_eny5x"]
+
+[resource]
+script = ExtResource("1_oin7r")
+health = 100
+maxhealth = 0
+defense = 0
+spellSlot = ExtResource("2_eny5x")

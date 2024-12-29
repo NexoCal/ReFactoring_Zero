@@ -41,7 +41,7 @@ func change_state(srcState, newState):
 	targetState.enter()
 	
 	currentState = targetState
-	print("changed")
+	
 
 
 

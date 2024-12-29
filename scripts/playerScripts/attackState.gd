@@ -1,11 +1,11 @@
 extends State
 class_name attackState
 @onready var player: CharacterBody2D = $"../.."
-@onready var attack1col: CollisionShape2D = $"../../Marker2D/Area2D/attack1Col"
-@onready var attack2col: CollisionShape2D = $"../../Marker2D/Area2D/attack2Col"
+@onready var attack1col: CollisionShape2D = $"../../Marker2D/attackbox/attack1Col"
+@onready var attack2col: CollisionShape2D = $"../../Marker2D/attackbox/attack2Col"
 #@onready var attack3col: CollisionShape2D = $"../../Marker2D/Area2D/attack3Col"
-@onready var attack4col: CollisionShape2D = $"../../Marker2D/Area2D/attack4Col"
-@onready var attack3col: CollisionShape2D = $"../../Marker2D/Area2D/attack1Col"
+@onready var attack4col: CollisionShape2D = $"../../Marker2D/attackbox/attack4Col"
+@onready var attack3col: CollisionShape2D = $"../../Marker2D/attackbox/attack1Col"
 
 
 @onready var animplay: AnimationPlayer = $"../../AnimationPlayer"
@@ -104,7 +104,7 @@ func _on_move_attack_timeout() -> void:
 	pass # Replace with function body.
 	
 func _on_hit_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemyAttacks") and player.isHurt == false:
+	if area.is_in_group("enemyAttacks") and player.isHurt == false and player.isPdodge == false:
 		var attacker = area.get_owner()
 		player.health -= attacker.attackVal
 		print(str(player.health) + "Left for Player")

@@ -13,6 +13,14 @@ var playerX
 var targetX
 var follow 
 
+func _ready() -> void:
+
+
+	MAXDIST = 400.0
+	health = 100
+	attackVal = 10
+	died = false
+
 func _process(delta: float) -> void:
 	pass
 

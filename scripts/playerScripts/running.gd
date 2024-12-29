@@ -48,7 +48,7 @@ func exit():
 
 
 func _on_hit_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemyAttacks") and player.isHurt == false :
+	if area.is_in_group("enemyAttacks") and player.isHurt == false and player.isPdodge == false:
 		var attacker = area.get_owner()
 		player.health -= attacker.attackVal
 		print(str(player.health) + "Left for Player")

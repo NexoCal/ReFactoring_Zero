@@ -7,11 +7,12 @@ class_name Hurt
 @onready var animplay: AnimationPlayer = $"../../AnimationPlayer"
 @export var randStrength: float = 1.0
 @export var shakefade : float = 0.5
+@export var playerStats: Resource
 
-@onready var attack1col: CollisionShape2D = $"../../Marker2D/Area2D/attack1Col"
-@onready var attack2col: CollisionShape2D = $"../../Marker2D/Area2D/attack2Col"
-@onready var attack3col: CollisionShape2D = $"../../Marker2D/Area2D/attack3Col"
-@onready var attack4col: CollisionShape2D = $"../../Marker2D/Area2D/attack4Col"
+@onready var attack1col: CollisionShape2D = $"../../Marker2D/attackbox/attack1Col"
+@onready var attack2col: CollisionShape2D = $"../../Marker2D/attackbox/attack2Col"
+@onready var attack3col: CollisionShape2D = $"../../Marker2D/attackbox/attack3Col"
+@onready var attack4col: CollisionShape2D = $"../../Marker2D/attackbox/attack4Col"
 
 var rng = RandomNumberGenerator.new()
 var shakeStreght: float = 0.0
@@ -26,6 +27,8 @@ func enter():
 	attack2col.set_disabled(true)
 	attack3col.set_disabled(true)
 	attack4col.set_disabled(true)
+	
+	
 	
 	player.velocity.x = 0
 	animplay.play("hurt")
@@ -57,10 +60,6 @@ func update(_delta:float):
 	elif player.direction == Vector2.LEFT:
 			player.velocity.x = 200
 			player.velocity.y = -10
-
-
-	
-	
 	if canMoveAfter:
 		stateTrans.emit(self, "idle")
 	
@@ -89,3 +88,4 @@ func _on_hurt_cooldown_timeout() -> void:
 func _on_lock_hurt_timeout() -> void:
 	canMoveAfter = true
 	pass # Replace with function body.
+	

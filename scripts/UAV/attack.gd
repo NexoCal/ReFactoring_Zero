@@ -18,6 +18,7 @@ func enter():
 	attackcooldown.start(1.5)
 	lockmove.start(0.3)
 	canAttack = false
+	get_parent().resetAttack.connect(resetAttackaAnim)
 	pass
 
 func update(_delta: float):
@@ -51,3 +52,7 @@ func _on_attack_cooldown_timeout() -> void:
 func _on_lock_move_timeout() -> void:
 	canMove = false
 	pass # Replace with function body.
+
+func resetAttackaAnim():
+	animplay.seek(0.0)
+	pass
