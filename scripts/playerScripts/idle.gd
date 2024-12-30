@@ -37,11 +37,10 @@ func exit():
 	pass
 
 func _on_hit_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemyAttacks") and player.isHurt == false and player.isPdodge == false :
+	if area.is_in_group("enemyAttacks") and player.isHurt == false and player.isPdodge == false and get_parent().currentState.name == "idle" :
 		var attacker = area.get_owner()
 		player.health -= attacker.attackVal
-		player.stats.health -= attacker.attackVal
-		print(str(player.health) + "Left for Player")
+		print(str(player.health) + " Left for Player")
 		freezeTime(0.1,0.5)
 		stateTrans.emit(self,'hurt')
 		

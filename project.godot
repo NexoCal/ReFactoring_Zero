@@ -25,6 +25,15 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="project-a"
 
+[file_customization]
+
+folder_colors={
+"res://items/": "orange",
+"res://items/defensiveItem/": "blue",
+"res://items/offensiveItem/": "red",
+"res://items/utilityItem/": "teal"
+}
+
 [global_group]
 
 enemy="enemies"

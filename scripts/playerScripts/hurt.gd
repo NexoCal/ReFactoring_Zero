@@ -28,8 +28,6 @@ func enter():
 	attack3col.set_disabled(true)
 	attack4col.set_disabled(true)
 	
-	
-	
 	player.velocity.x = 0
 	animplay.play("hurt")
 	$hurtCooldown.start(2)
@@ -43,7 +41,6 @@ func enter():
 	
 	effect.set_visible(true)
 
-	
 	
 func update(_delta:float):
 	

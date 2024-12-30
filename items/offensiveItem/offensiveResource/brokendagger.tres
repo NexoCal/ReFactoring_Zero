@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BrokenDagger" load_steps=3 format=3 uid="uid://dfh10alph34gg"]
+
+[ext_resource type="Script" path="res://items/offensiveItem/offensiveScripts/brokendagger.gd" id="1_yp03g"]
+[ext_resource type="Texture2D" uid="uid://dry3rpx1uyh7l" path="res://items/offensiveItem/offensiveSprite/brokenDagger.png" id="2_nmexr"]
+
+[resource]
+script = ExtResource("1_yp03g")
+type = "Offensive"
+name = "BrokenDagger"
+texture = ExtResource("2_nmexr")

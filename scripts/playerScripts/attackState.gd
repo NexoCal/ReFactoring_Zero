@@ -15,6 +15,7 @@ var comboAttack
 var canMove
 
 func enter():
+	
 	animplay.play("attack-1")
 	attackMove -= 1
 	$attackComboTimer.start(0.3)
@@ -22,7 +23,6 @@ func enter():
 	$moveAttack.start(0.4)
 	resetAttack = false
 	canMove = false
-	
 
 func update(_delta:float):
 	
@@ -80,10 +80,15 @@ func update(_delta:float):
 		
 
 func exit():
+	player.attackVal = 20
 	resetAttack = null
 	comboAttack = false
-	player.attackVal = 20
 	attackMove = 4
+	
+	attack1col.set_disabled(true)
+	attack2col.set_disabled(true)
+	attack3col.set_disabled(true)
+	attack4col.set_disabled(true)
 	
 
 
@@ -104,8 +109,13 @@ func _on_move_attack_timeout() -> void:
 	pass # Replace with function body.
 	
 func _on_hit_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemyAttacks") and player.isHurt == false and player.isPdodge == false:
+	if area.is_in_group("enemyAttacks") and player.isHurt == false and player.isPdodge == false and get_parent().currentState.name == "attackState":
 		var attacker = area.get_owner()
 		player.health -= attacker.attackVal
+	
 		print(str(player.health) + "Left for Player")
+		attack1col.set_disabled(true)
+		attack2col.set_disabled(true)
+		attack3col.set_disabled(true)
+		attack4col.set_disabled(true)
 		stateTrans.emit(self,'hurt')

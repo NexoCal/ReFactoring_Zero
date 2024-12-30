@@ -48,6 +48,9 @@ func change_state(srcState, newState):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("playerAttacks") and !uavdrone.died:
+		for i in player.inventory.itemslot:
+			if i.type == "Offensive":
+				i.applyUpgrade(player)
 		uavdrone.health -= player.attackVal
 		animplay.play('hitFlash')
 		freezeTime(0.1,0.3)

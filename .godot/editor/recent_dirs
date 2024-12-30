@@ -1,3 +1,7 @@
+res://items/offensiveItem/offensiveSprite
+res://items/offensiveItem/offensiveResource
+res://items
+res://
 res://resources
 res://shader
 res://scripts
@@ -8,5 +12,4 @@ res://assets/uav
 res://scripts/UAV
 res://scripts/playerScripts
 res://scene
-res://
 res://assets

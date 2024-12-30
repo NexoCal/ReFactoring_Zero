@@ -706,7 +706,6 @@ _data = {
 [node name="player" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(251.085, 149.415)
-collision_layer = 0
 collision_mask = 16777216
 script = ExtResource("1_jpc22")
 stats = ExtResource("2_odo3m")
@@ -821,6 +820,7 @@ one_shot = true
 one_shot = true
 
 [connection signal="area_entered" from="Marker2D/hitArea" to="statemachine/idle" method="_on_hit_area_area_entered"]
+[connection signal="area_entered" from="Marker2D/hitArea" to="statemachine/attackState" method="_on_hit_area_area_entered"]
 [connection signal="area_entered" from="Marker2D/hitArea" to="statemachine/running" method="_on_hit_area_area_entered"]
 [connection signal="area_entered" from="Marker2D/hitArea" to="statemachine/dash" method="_on_hit_area_area_entered"]
 [connection signal="area_entered" from="Marker2D/perfectdodge" to="statemachine/dash" method="_on_perfectdodge_area_entered"]

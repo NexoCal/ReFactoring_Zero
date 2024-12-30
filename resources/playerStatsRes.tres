@@ -8,4 +8,4 @@ script = ExtResource("1_oin7r")
 health = 100
 maxhealth = 0
 defense = 0
-spellSlot = ExtResource("2_eny5x")
+inventory = ExtResource("2_eny5x")

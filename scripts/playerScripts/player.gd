@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 
 
 @onready var animtree: AnimationTree = $AnimationTree
@@ -16,17 +16,22 @@ var JUMPVELOCITY = 600.0
 const  GRAVITY = 1100.0
 var FLOORACC = 50.0
 var DASHSPEED = 1200.0
-var canDash = true
+
 var direction = Vector2.RIGHT
-var health 
+
+var canDash = true
 var isHurt = false
 var isPdodge = false
 
 var attackVal = 20
-var attackFinal = 40
+var attackBoost = 0
+
+var health 
+var inventory
 
 func _ready() -> void:
 	health = stats.health
+	inventory = stats.inventory
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
