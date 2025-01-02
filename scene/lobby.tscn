@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs7po57mby5vj"]
+[gd_scene load_steps=10 format=3 uid="uid://cs7po57mby5vj"]
 
 [ext_resource type="Script" path="res://scripts/areaScripts/lobby.gd" id="1_202lq"]
 [ext_resource type="Texture2D" uid="uid://ck2rnrd3f0cwb" path="res://assets/background/Lobbybgofficial.png" id="1_c6ndd"]
 [ext_resource type="PackedScene" uid="uid://se8t5bp4t4j2" path="res://scene/player.tscn" id="2_0wi1a"]
 [ext_resource type="FontFile" uid="uid://dj6c257nh4vvu" path="res://assets/font/PixelifySans-Medium.ttf" id="4_31kmq"]
+[ext_resource type="Shader" path="res://shader/crt.gdshader" id="5_q6kfq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_atnme"]
 size = Vector2(1280, 82)
@@ -13,6 +14,23 @@ size = Vector2(5, 574)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fds40"]
 size = Vector2(147, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_686ly"]
+shader = ExtResource("5_q6kfq")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.015
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 1.0
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 2.0
+shader_parameter/vignette_intensity = 0.051
+shader_parameter/aberation_amount = 1.0
+shader_parameter/roll_line_amount = 0.09
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
 
 [node name="Lobby" type="Node2D"]
 script = ExtResource("1_202lq")
@@ -68,6 +86,13 @@ theme_override_font_sizes/font_size = 24
 text = "Press F to Start"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_686ly")
+offset_left = -264.0
+offset_top = -146.0
+offset_right = 330.0
+offset_bottom = 129.0
 
 [connection signal="body_entered" from="teleportArea" to="." method="_on_teleport_area_body_entered"]
 [connection signal="body_exited" from="teleportArea" to="." method="_on_teleport_area_body_exited"]

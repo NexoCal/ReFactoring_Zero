@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SceneLoaderLoad" load_steps=5 format=3 uid="uid://bgf874d5pogey"]
+
+[ext_resource type="PackedScene" uid="uid://7a5e2ilrs0re" path="res://scene/CRoom01.tscn" id="1_441m6"]
+[ext_resource type="Script" path="res://resources/sceneManage.gd" id="1_e6b8y"]
+[ext_resource type="PackedScene" uid="uid://bs5d7da6aqqmd" path="res://scene/SO1T2.tscn" id="2_scmtg"]
+[ext_resource type="PackedScene" uid="uid://dqu6o16nu51u8" path="res://scene/SO1T3.tscn" id="3_y10yj"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_e6b8y")
+sceneList = Array[PackedScene]([ExtResource("1_441m6"), ExtResource("2_scmtg"), ExtResource("3_y10yj")])

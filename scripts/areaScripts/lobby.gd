@@ -15,4 +15,4 @@ func _on_teleport_area_body_exited(body: Node2D) -> void:
 func _process(delta: float) -> void:
 	if insideTp:
 		if Input.is_action_just_pressed("confirmation"):
-			get_tree().change_scene_to_file("res://scene/CRoom01.tscn")
+			get_tree().change_scene_to_file("res://scene/loadingIngame.tscn")
