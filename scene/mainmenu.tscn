@@ -1,0 +1,158 @@
+[gd_scene load_steps=37 format=3 uid="uid://bxpyfj2sgv3of"]
+
+[ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_4bjcc"]
+[ext_resource type="FontFile" uid="uid://dj6c257nh4vvu" path="res://assets/font/PixelifySans-Medium.ttf" id="2_labti"]
+
+[sub_resource type="Theme" id="Theme_enfrv"]
+default_font = ExtResource("2_labti")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dewwh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6dlra"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2qmay"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b3h4y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wv5nj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgmnj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pmydg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yt2o4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3wbrf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ssdy4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8seoc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qqx8v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mb32p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g58gd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p0c2d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gmoem"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i81md"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f04ne"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mbpeg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kcs6v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qswwq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2rmfp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p57kf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kou86"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jy4js"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3vf1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q64uh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kcvkx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8kplh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu657"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5frrl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1epec"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kptrm"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4bjcc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -134.0
+offset_right = 487.0
+offset_bottom = -12.0
+grow_vertical = 0
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = SubResource("Theme_enfrv")
+theme_override_colors/font_hover_color = Color(1, 1, 0.67451, 1)
+theme_override_fonts/font = ExtResource("2_labti")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dewwh")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_6dlra")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2qmay")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_b3h4y")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_wv5nj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_jgmnj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pmydg")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_yt2o4")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3wbrf")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ssdy4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8seoc")
+text = "Start"
+alignment = 0
+
+[node name="Option" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 0.67451, 1)
+theme_override_fonts/font = ExtResource("2_labti")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qqx8v")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_mb32p")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_g58gd")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_p0c2d")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_gmoem")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_i81md")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_f04ne")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_mbpeg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kcs6v")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qswwq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2rmfp")
+text = "Option"
+alignment = 0
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 0.67451, 1)
+theme_override_fonts/font = ExtResource("2_labti")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p57kf")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kou86")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jy4js")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_x3vf1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_q64uh")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kcvkx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8kplh")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_fu657")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5frrl")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_1epec")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kptrm")
+text = "Exit"
+alignment = 0
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

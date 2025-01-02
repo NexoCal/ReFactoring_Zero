@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs7po57mby5vj"]
+
+[ext_resource type="Script" path="res://scripts/areaScripts/lobby.gd" id="1_202lq"]
+[ext_resource type="Texture2D" uid="uid://ck2rnrd3f0cwb" path="res://assets/background/Lobbybgofficial.png" id="1_c6ndd"]
+[ext_resource type="PackedScene" uid="uid://se8t5bp4t4j2" path="res://scene/player.tscn" id="2_0wi1a"]
+[ext_resource type="FontFile" uid="uid://dj6c257nh4vvu" path="res://assets/font/PixelifySans-Medium.ttf" id="4_31kmq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atnme"]
+size = Vector2(1280, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubryr"]
+size = Vector2(5, 574)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fds40"]
+size = Vector2(147, 8)
+
+[node name="Lobby" type="Node2D"]
+script = ExtResource("1_202lq")
+
+[node name="background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_c6ndd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="boundaries" type="StaticBody2D" parent="."]
+collision_layer = 16777216
+collision_mask = 16777216
+
+[node name="floor" type="CollisionShape2D" parent="boundaries"]
+position = Vector2(0, 319)
+shape = SubResource("RectangleShape2D_atnme")
+
+[node name="wallright" type="CollisionShape2D" parent="boundaries"]
+position = Vector2(641.5, -9)
+shape = SubResource("RectangleShape2D_ubryr")
+
+[node name="wallleft" type="CollisionShape2D" parent="boundaries"]
+position = Vector2(-642, -9)
+shape = SubResource("RectangleShape2D_ubryr")
+
+[node name="teleporter" type="StaticBody2D" parent="."]
+position = Vector2(494, 266)
+collision_layer = 16777216
+collision_mask = 16777216
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="teleporter"]
+polygon = PackedVector2Array(-56, -2, -70, 0, -76, 4, -84, 8, -92, 12, 95, 12, 88, 8, 82, 4, 76, 0, 60, -2)
+
+[node name="teleportArea" type="Area2D" parent="."]
+position = Vector2(494, 266)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleportArea"]
+position = Vector2(1.5, -4)
+shape = SubResource("RectangleShape2D_fds40")
+
+[node name="player" parent="." instance=ExtResource("2_0wi1a")]
+position = Vector2(-593, 224)
+
+[node name="TpText" type="Label" parent="."]
+visible = false
+offset_left = 387.0
+offset_top = 77.0
+offset_right = 604.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("4_31kmq")
+theme_override_font_sizes/font_size = 24
+text = "Press F to Start"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="body_entered" from="teleportArea" to="." method="_on_teleport_area_body_entered"]
+[connection signal="body_exited" from="teleportArea" to="." method="_on_teleport_area_body_exited"]

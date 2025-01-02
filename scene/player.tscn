@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://scripts/playerScripts/hurt.gd" id="13_hdqmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jx67e"]
-size = Vector2(26, 103)
+size = Vector2(26, 100.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqkhp"]
 shader = ExtResource("2_hqavh")
@@ -36,10 +36,10 @@ size = Vector2(205, 204)
 size = Vector2(202, 180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktdq4"]
-size = Vector2(26, 103)
+size = Vector2(26, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hv4ol"]
-size = Vector2(8, 103)
+size = Vector2(8, 100)
 
 [sub_resource type="Animation" id="Animation_pgsu2"]
 length = 0.2
@@ -711,7 +711,7 @@ script = ExtResource("1_jpc22")
 stats = ExtResource("2_odo3m")
 
 [node name="bodyCol" type="CollisionShape2D" parent="."]
-position = Vector2(1.91499, 5.58501)
+position = Vector2(1.91499, 4.33501)
 shape = SubResource("RectangleShape2D_jx67e")
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -755,7 +755,7 @@ collision_layer = 16777216
 collision_mask = 16777728
 
 [node name="hitBox" type="CollisionShape2D" parent="Marker2D/hitArea"]
-position = Vector2(1.91499, 6.08501)
+position = Vector2(1.91499, 4.58501)
 shape = SubResource("RectangleShape2D_ktdq4")
 
 [node name="perfectdodge" type="Area2D" parent="Marker2D"]
@@ -763,7 +763,7 @@ collision_layer = 16777216
 collision_mask = 1024
 
 [node name="pDodge" type="CollisionShape2D" parent="Marker2D/perfectdodge"]
-position = Vector2(8.00008, 10.4999)
+position = Vector2(8.00008, 8.99989)
 shape = SubResource("RectangleShape2D_hv4ol")
 disabled = true
 
